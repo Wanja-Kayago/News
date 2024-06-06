@@ -10,6 +10,9 @@ body {
   height: 866px;
   margin-bottom: -10px;
 }
+#newsHero{
+    width: 100%;
+}
 .container {
     max-width: 800px;
     margin: auto;
@@ -33,15 +36,20 @@ body {
     border-radius: 10px;
     border: none;
     cursor: pointer;
-    
-    
 }
 
 #news-container {
     margin-top: 20px;
     width: 1000px;
     margin-left: 450px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+    
 }
+    
+
 
 #topnav {
     background-color:white;
@@ -119,7 +127,6 @@ body {
     background-size: cover;
     width: 100%;
     background-repeat: no-repeat;
-
   }
   #texts{
     margin-top: 100px;
@@ -128,9 +135,7 @@ body {
     font-style: normal;
     color:blue;
     justify-content: space-around;
-    /* gap: 150px; */
   }
-  
   .news{
     width: 150px;
     height: 50px;
@@ -149,4 +154,7 @@ body {
 .title{
   text-align: center;
   font-size:100px;
+}
+#search-query{
+    text-align: center;
 }

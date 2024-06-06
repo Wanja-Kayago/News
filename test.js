@@ -1,10 +1,12 @@
+
+
 document.addEventListener('DOMContentLoaded', async function() {
     const searchInput = document.getElementById('search-input');
     const searchButton = document.getElementById('search-button');
     const newsContainer = document.getElementById('news-container');
+    const searchQueryElement = document.getElementById('search-query'); // For displaying search query
   
-    // Define a default query
-    const defaultQuery = 'world'; // Replace with your preferred default news topic
+    const defaultQuery = 'Kenya';
   
     // Fetch default news on page load
     try {
@@ -15,15 +17,32 @@ document.addEventListener('DOMContentLoaded', async function() {
       // Clear the container (optional if you want to keep previous results)
       newsContainer.innerHTML = '';
   
-      // Call a function to display the fetched news (improved readability)
+      // Call function to display the fetched news (improved readability)
       displayNews(data.articles);
     } catch (error) {
       console.error('Error fetching default news:', error);
     }
   
-    // Search button click event listener remains the same
+    // Search button click event listener
     searchButton.addEventListener('click', async () => {
-      // ... rest of the search functionality as before ...
+      const query = searchInput.value.trim();
+      if (!query) return;
+  
+      try {
+        const response = await fetch(`https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&apiKey=8f4c5e88c22c4c8485b142c4f294a2b6`);
+        const data = await response.json();
+        console.log({ data });
+  
+        // Clear the container (optional)
+        newsContainer.innerHTML = '';
+  
+        // Update search query element
+        searchQueryElement.textContent = `Search results for: ${query}`;
+  
+        displayNews(data.articles);
+      } catch (error) {
+        console.error('Error fetching news:', error);
+      }
     });
   
     // Function to display news articles (reusable)
